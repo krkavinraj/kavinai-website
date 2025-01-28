@@ -25,9 +25,8 @@ export const Navbar = () => {
             <div className="right_side flex items-center">
                 <ul className={`pages md:flex block md:static absolute top-16 left-0 text-center w-full justify-center md:bg-transparent bg-[#ffffff] dark:bg-[#111827] ${nav ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 duration-100`}>
                     <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/'>Solutions</Link></li>
-                    <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/'>About</Link></li>
+                    <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link target='_' href='https://www.linkedin.com/company/kavinai/about/'>About</Link></li>
                     <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/pricing'>Pricing</Link></li>
-                    <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/questions'>FAQ</Link></li>
                 </ul>
                 <div className="download">
                     <Button><Link href={'/download'}>Download</Link></Button>
