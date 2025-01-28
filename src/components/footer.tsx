@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
+// code
 export const Footer = () => {
     return (
         <footer className="dark:bg-gray-800 bg-blue-50">
