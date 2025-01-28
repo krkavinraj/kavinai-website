@@ -29,7 +29,7 @@ export const Testimonial = () => {
       return (
         <div className="container mx-auto px-4 py-16 dark:bg-gray-900">
           <h2 className="text-4xl font-bold text-center mb-4">What Our Customers Say</h2>
-          <p className="text-xl text-gray-600 text-center mb-12">Don't just take our word for it - hear from our satisfied customers</p>
+          <p className="text-xl text-gray-600 text-center mb-12">Don&apos;t just take our word for it - hear from our satisfied customers</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
               <div

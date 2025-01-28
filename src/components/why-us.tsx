@@ -1,4 +1,4 @@
-import { BrainIcon, CodeIcon, ComputerIcon, HandIcon, LockIcon, TerminalIcon } from 'lucide-react'
+import { BrainIcon, ComputerIcon, HandIcon, LockIcon } from 'lucide-react'
 import React from 'react'
 
 export const WhyUs = () => {
@@ -48,7 +48,7 @@ export const WhyUs = () => {
                                 </div>
                                 <h2 className='mt-2 text-xl font-bold'>Privacy-focused</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>We keep your data safe and we don't use it to train llms</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>We keep your data safe and we don&apos;t use it to train llms</p>
                         </div>
                     </div>
                 </div>

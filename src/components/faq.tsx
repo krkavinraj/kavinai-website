@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
@@ -28,7 +28,7 @@ const FAQ = () => {
                      values that determine the behavior of a component.` }
   ];
 
-  const handleToggle = (index: any) => {
+  const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 

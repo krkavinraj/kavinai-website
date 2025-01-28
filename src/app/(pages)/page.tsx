@@ -1,6 +1,5 @@
 import FAQ from "@/components/faq";
 import { Hero } from "@/components/hero";
-import { PainPoints } from "@/components/pain-points";
 import { PricingComp } from "@/components/pricing-comp";
 import { SocialProof } from "@/components/social-proof";
 import { UseCases } from "@/components/use-cases";

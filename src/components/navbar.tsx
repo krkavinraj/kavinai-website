@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { MenuIcon, SidebarCloseIcon } from 'lucide-react';
+import { MenuIcon } from 'lucide-react';
 import { ModeToggle } from './ui/mode-toggle';
 
 export const Navbar = () => {
