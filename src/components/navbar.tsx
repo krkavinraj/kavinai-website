@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { MenuIcon } from 'lucide-react';
 import { ModeToggle } from './ui/mode-toggle';
 
+// code
 export const Navbar = () => {
     const [nav, setNav] = useState(false);
 
