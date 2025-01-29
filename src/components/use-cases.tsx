@@ -15,7 +15,7 @@ export const UseCases = () => {
                                 </div>
                                 <h2 className='ml-2 text-xl font-bold'>Use Terminal Like Pro!</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Use the terminal in natural language instead of writing commands.</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Use terminal in natural language instead of write commands</p>
                         </div>
                     </div>
                     <div className="use_cases md:w-1/3 w-full p-4">
@@ -26,7 +26,7 @@ export const UseCases = () => {
                                 </div>
                                 <h2 className='ml-2 text-xl font-bold'>Control Everything With One Interface</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Create a folder, open a browser, play your favorite song, and do everything while staying in one app.</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Create folder, open browser, open your favorite song, and do everything by just staying in one app</p>
                         </div>
                     </div>
                     <div className="use_cases md:w-1/3 w-full p-4">
@@ -37,7 +37,7 @@ export const UseCases = () => {
                                 </div>
                                 <h2 className='ml-2 text-xl font-bold'>Code Fast with Us</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Use AI to create your project using just prompts.</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Use ai to create your project just by using prompts</p>
                         </div>
                     </div>
                 </div>
