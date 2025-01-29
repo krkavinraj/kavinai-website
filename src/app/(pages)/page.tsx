@@ -1,5 +1,4 @@
 import { Hero } from "@/components/hero";
-import { PainPoints } from "@/components/pain-points";
 import { PricingComp } from "@/components/pricing-comp";
 import { UseCases } from "@/components/use-cases";
 import { WhyUs } from "@/components/why-us";
@@ -11,9 +10,7 @@ export default function Home() {
       <Hero />
       {/* <SocialProof/> */}
       <UseCases />
-      <div className="pain_points lg:mx-20">
-      <PainPoints />
-      </div>
+      {/* <PainPoints /> */}
       <WhyUs />
       <PricingComp />
       {/* <Testimonial /> */}

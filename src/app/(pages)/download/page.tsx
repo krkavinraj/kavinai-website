@@ -34,7 +34,7 @@ export default function Download() {
           </div>
         </div>
         <div className="download">
-          <Button className="mt-5 md:text-xl text-lg px-7 py-7">Coming Soon</Button>
+          <Button className="mt-5 md:text-xl text-lg px-7 py-7">Comming Soon</Button>
         </div>
       </div>
     </main>

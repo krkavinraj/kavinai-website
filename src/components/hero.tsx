@@ -13,7 +13,7 @@ export const Hero = () => {
         <Link href={'/download'}><Button className='mt-5 md:text-xl text-lg px-7 py-7'>Download for desktop</Button></Link>
       </section>
       <section className="feature_image md:mx-auto md:px-0 px-5 md:w-1/2 w-full mt-10">
-        <Image className='rounded-lg' src={app_image} alt='kavinai' />
+        <Image src={app_image} alt='kavinai' />
       </section>
     </main>
   )
