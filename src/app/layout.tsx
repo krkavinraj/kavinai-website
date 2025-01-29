@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "KavinAI - Access Your Computers In a Single User Interface.",
-  description: "Access Your Computers In a Single User Interface.",
+  description: "Easily manage and control all your computers from one intuitive interface. Secure, efficient, and user-friendly remote access with KavinAI.",
 };
 
 export default function RootLayout({
