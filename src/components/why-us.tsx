@@ -37,7 +37,7 @@ export const WhyUs = () => {
                                 </div>
                                 <h2 className='mt-2 text-xl font-bold'>Powerful LLMs</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>KavinAI Multiagent uses powerful llms like GPT-4o and LLama 3.3</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>KavinAI Multiagent uses powerful llms like GPT-4o, LLama 3.3, and DeepSeek</p>
                         </div>
                     </div>
                     <div className="card md:w-1/3 w-full p-4">
