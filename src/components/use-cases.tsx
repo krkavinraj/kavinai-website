@@ -3,7 +3,7 @@ import React from 'react'
 
 export const UseCases = () => {
     return (
-        <section className='bg-white dark:bg-gray-900 flex justify-center w-full pt-5'>
+        <section className='bg-white dark:bg-gray-900 flex justify-center w-full pt-40'>
             <div>
                 <h1 className='text-4xl text-center font-bold'>Use Cases</h1>
                 <div className="use_cases_cards flex flex-wrap justify-center mx-auto">
