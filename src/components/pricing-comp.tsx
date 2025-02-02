@@ -48,7 +48,7 @@ export const PricingComp = () => {
                         <h3 className="mb-4 text-2xl font-semibold">Plus Subscription</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Unlocks advanced features that is not available in base subscription</p>
                         <div className="flex justify-center items-baseline my-8">
-                            <span className="mr-2 text-5xl font-extrabold">..</span>
+                        <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
                             <span className="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
 
@@ -76,7 +76,7 @@ export const PricingComp = () => {
                         <h3 className="mb-4 text-2xl font-semibold">Enhance Your Experience</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Enhance your experience with optional features.</p>
                         <div className="flex justify-center items-baseline my-8">
-                            <span className="mr-2 text-5xl font-extrabold">$10</span>
+                        <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
                             <span className="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
 
