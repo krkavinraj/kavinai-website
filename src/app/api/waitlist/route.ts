@@ -1,32 +1,46 @@
-import { NextResponse } from "next/server";
-import mysql from "mysql2/promise";
+import { NextResponse } from 'next/server';
+import clientPromise from '@/lib/mongodb';
 
-export async function POST(req: Request) {
-    const { email, industry, reason } = await req.json();
-  
-    if (!email || !industry || !reason) {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
-    }
-  
-    try {
-      const connection = await mysql.createConnection({
-        host: process.env.MYSQL_HOST,
-        user: process.env.MYSQL_USER,
-        password: process.env.MYSQL_PASSWORD,
-        database: process.env.MYSQL_DATABASE,
-      });
-  
-      await connection.execute(
-        "INSERT INTO waitlist (email, industry, reason) VALUES (?, ?, ?)",
-        [email, industry, reason]
+export async function POST(request: Request) {
+  try {
+    const { name, email, reason } = await request.json();
+
+    // Basic validation
+    if (!name || !email || !reason) {
+      return new NextResponse(
+        JSON.stringify({ success: false, message: 'All fields are required' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
-  
-      await connection.end();
-  
-      return NextResponse.json({ message: "Successfully joined the waitlist!" }, { status: 200 });
-    } catch (error) {
-      console.error("Database Error:", error);
-      return NextResponse.json({ error: "Server error" }, { status: 500 });
     }
+
+    // Validate email format
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return new NextResponse(
+        JSON.stringify({ success: false, message: 'Invalid email format' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const client = await clientPromise;
+    const db = client.db();
+
+    // Insert into waitlist collection
+    await db.collection('waitlist').insertOne({
+      name,
+      email,
+      reason,
+      createdAt: new Date(),
+    });
+
+    return new NextResponse(
+      JSON.stringify({ success: true, message: 'Joined waitlist successfully!' }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    console.error('Waitlist submission error:', error);
+    return new NextResponse(
+      JSON.stringify({ success: false, message: 'Internal server error' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
-  
+}
