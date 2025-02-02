@@ -3,16 +3,16 @@
 import React, { useState } from "react";
 
 interface FormData {
+    name: string;
     email: string;
-    industry: string;
     reason: string;
 }
 
 export const WaitListPageComp = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState<FormData>({
+        name: "",
         email: "",
-        industry: "",
         reason: "",
     });
 
@@ -50,10 +50,10 @@ export const WaitListPageComp = () => {
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit} method="POST">
                             <div>
                                 <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Your email"
-                                    value={formData.email}
+                                    type="text"
+                                    name="name"
+                                    placeholder="Your name"
+                                    value={formData.name}
                                     onChange={handleChange}
                                     required
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -61,10 +61,10 @@ export const WaitListPageComp = () => {
                             </div>
                             <div>
                                 <input
-                                    type="text"
-                                    name="industry"
-                                    placeholder="Industry"
-                                    value={formData.industry}
+                                    type="email"
+                                    name="email"
+                                    placeholder="Your email"
+                                    value={formData.email}
                                     onChange={handleChange}
                                     required
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
