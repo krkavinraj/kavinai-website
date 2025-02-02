@@ -4,6 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import Provider from "../Provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -23,6 +24,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
                 />
                 <Navbar />
                 <main>{children}</main>
+                <Toaster />
                 <Footer />
             </Provider>
         </main>
