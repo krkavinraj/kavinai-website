@@ -16,7 +16,7 @@ export const Waitlist = () => {
                     </h2>
 
                     <p className='text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed'>
-                        Supercharge your productivity with KavinAI-MultiAgent. Deploy AI agents to handle your workload and experience next-level performance today.
+                        Supercharge your productivity with Kavi. Deploy AI agents to handle your workload and experience next-level performance today.
                     </p>
 
                     <div className='mt-8 hover:scale-[1.02] transition-transform flex justify-center'>

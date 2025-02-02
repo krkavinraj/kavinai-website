@@ -26,7 +26,7 @@ export const WhyUs = () => {
                                 </div>
                                 <h2 className='mt-2 text-xl font-bold'>Simple Interface</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>KavinAi Multiagent offers a lots of features in a simple interface.</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Kavi offers a lots of features in a simple interface.</p>
                         </div>
                     </div>
                     <div className="card md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300">
@@ -37,7 +37,7 @@ export const WhyUs = () => {
                                 </div>
                                 <h2 className='mt-2 text-xl font-bold'>Powerful LLMs</h2>
                             </div>
-                            <p className='mt-2 dark:text-gray-300 text-gray-700'>KavinAI Multiagent uses powerful llms like GPT-4o, LLama 3.3, and DeepSeek</p>
+                            <p className='mt-2 dark:text-gray-300 text-gray-700'>Kavi uses powerful llms like GPT-4o, LLama 3.3, and DeepSeek</p>
                         </div>
                     </div>
                     <div className="card md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300">

@@ -7,7 +7,7 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "What is KavinAI-MultiAgent?",
+      question: "What is Kavi",
       answer: "KavinAI-MultiAgent is an advanced AI agent desktop application that leverages multiple specialized agents working in tandem to automate complex tasks and supercharge productivity."
     },
     {
@@ -16,7 +16,7 @@ const FAQ = () => {
     },
     {
       question: "Is there a free trial available?",
-      answer: "Yes, you can try KavinAI-MultiAgent for free right now by joining waitlist. But in future KavinAI-Multiagent will be paid."
+      answer: "Yes, you can try Kavi for free right now by joining waitlist. But in future KavinAI-Multiagent will be paid."
     },
     {
       question: "How secure is my data?",
