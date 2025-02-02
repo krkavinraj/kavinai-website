@@ -1,7 +1,9 @@
+import FAQ from "@/components/faq";
 import { Hero } from "@/components/hero";
 import { PainPoints } from "@/components/pain-points";
 import { PricingComp } from "@/components/pricing-comp";
 import { UseCases } from "@/components/use-cases";
+import { Waitlist } from "@/components/waitlist";
 import { WhyUs } from "@/components/why-us";
 
 // code
@@ -15,9 +17,10 @@ export default function Home() {
       <PainPoints />
       </div>
       <WhyUs />
+      <Waitlist />
+      <FAQ />
       <PricingComp />
       {/* <Testimonial /> */}
-      {/* <FAQ /> */}
     </main>
   );
 }

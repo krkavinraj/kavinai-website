@@ -18,19 +18,19 @@ export const Navbar = () => {
     }
     return (
         <nav className='sticky top-0 left-0 z-50 flex justify-between backdrop-filter backdrop-blur-lg border-b-[.5px] border-b-blue-100 dark:border-b-[#474f57] bg-[#ffffff54] dark:bg-[#111827d8] h-16 items-center px-5'>
-            <div className="left_side">
+            <div className="left_side flex items-center">
                 <div className="logo text-2xl font-bold">
                     <Link href={'/'}><h1>Kavin<span className='text-blue-500'>AI</span></h1></Link>
                 </div>
+                <Link className='beta_button ml-2 md:block hidden bg-black dark:bg-white text-white dark:text-black font-semibold px-2 rounded-full' href={'/'}>Beta</Link>
             </div>
             <div className="right_side flex items-center">
                 <ul className={`pages md:flex block md:static absolute top-16 left-0 text-center w-full justify-center md:bg-transparent bg-[#ffffff] dark:bg-[#111827] ${nav ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 duration-100`}>
-                    <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/'>Solutions</Link></li>
                     <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link target='_' href='https://www.linkedin.com/company/kavinai/about/'>About</Link></li>
                     <li className='mr-3 font-semibold hover:underline underline-offset-2 transition-all duration-100 md:my-0 my-5'><Link href='/pricing'>Pricing</Link></li>
                 </ul>
                 <div className="download">
-                    <Button><Link href={'/download'}>Download</Link></Button>
+                    <Button><Link href={'/waitlist'}>Join waitlist</Link></Button>
                 </div>
                 <div className="theme ml-2">
                     <ModeToggle />
