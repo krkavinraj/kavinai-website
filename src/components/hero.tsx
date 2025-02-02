@@ -70,7 +70,7 @@ export const Hero = () => {
           <ArrowRight className="h-8 w-8" />
         </Button>
 
-        <div className="rounded-lg overflow-hidden shadow-xl" style={{ height: '360px' }}>
+        <div className="rounded-lg overflow-hidden shadow-xl">
           {isLoading && <div className="w-full h-full bg-gray-200 animate-pulse" />}
           {error && <div className="w-full h-full bg-red-100 flex items-center justify-center">Error loading video</div>}
           <video
