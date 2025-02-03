@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
 import React, { useState } from "react";
 
 interface FormData {
@@ -10,13 +11,13 @@ interface FormData {
 
 export const WaitListPageComp = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [joined, setJoined] = useState(false);
-
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
         reason: "",
     });
+
+    const { toast } = useToast()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,12 +34,10 @@ export const WaitListPageComp = () => {
                 body: JSON.stringify(formData),
             });
 
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong');
-            }
-            setJoined(true);
-            console.log(data.message); // Log success message
+            const result = await response.json();
+            toast({
+                description: result.message,
+            })
         } catch (error) {
             console.error("Error submitting form:", error);
         } finally {
@@ -88,17 +87,13 @@ export const WaitListPageComp = () => {
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 />
                             </div>
-                            { joined ? <button
-                                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            >
-                                Joined Successfully 🎉
-                            </button> : <button
+                            <button
                                 type="submit"
                                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? 'Submitting...' : 'Join the waitlist'}
-                            </button> }
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -106,4 +101,3 @@ export const WaitListPageComp = () => {
         </section>
     );
 }
-

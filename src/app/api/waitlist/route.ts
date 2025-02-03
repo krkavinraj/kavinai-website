@@ -8,24 +8,33 @@ export async function POST(request: Request) {
 
     // Basic validation
     if (!name || !email || !reason) {
-      return new NextResponse(
-        JSON.stringify({ success: false, message: 'All fields are required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        { success: false, message: 'All fields are required' },
+        { status: 400 }
       );
     }
 
     // Validate email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return new NextResponse(
-        JSON.stringify({ success: false, message: 'Invalid email format' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        { success: false, message: 'Invalid email format' },
+        { status: 400 }
       );
     }
 
     const client = await clientPromise;
     const db = client.db();
 
-    // Insert into waitlist collection
+    // Check if email already exists
+    const existingUser = await db.collection('waitlist').findOne({ email });
+    if (existingUser) {
+      return NextResponse.json(
+        { success: false, message: 'This email is already on the waitlist!' },
+        { status: 409 } // 409 Conflict status code
+      );
+    }
+
+    // Insert into waitlist collection if email doesn't exist
     await db.collection('waitlist').insertOne({
       name,
       email,
@@ -33,15 +42,15 @@ export async function POST(request: Request) {
       createdAt: new Date(),
     });
 
-    return new NextResponse(
-      JSON.stringify({ success: true, message: 'Joined waitlist successfully!' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    return NextResponse.json(
+      { success: true, message: 'Joined waitlist successfully! 🎉' },
+      { status: 200 }
     );
   } catch (error) {
     console.error('Waitlist submission error:', error);
-    return new NextResponse(
-      JSON.stringify({ success: false, message: 'Internal server error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    return NextResponse.json(
+      { success: false, message: 'Internal server error' },
+      { status: 500 }
     );
   }
 }
