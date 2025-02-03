@@ -12,9 +12,11 @@ export default function Home() {
     <main className="dark:bg-gray-900">
       <Hero />
       {/* <SocialProof/> */}
-      <UseCases />
+      <div className="use_cases lg:mt-24">
+        <UseCases />
+      </div>
       <div className="pain_points lg:mx-20">
-      <PainPoints />
+        <PainPoints />
       </div>
       <WhyUs />
       <Waitlist />
