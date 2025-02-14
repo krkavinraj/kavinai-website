@@ -17,7 +17,7 @@ export const Navbar = () => {
         }
     }
     return (
-        <nav className='sticky top-0 left-0 z-50 flex justify-between backdrop-filter backdrop-blur-lg border-b-[.5px] border-b-blue-100 dark:border-b-[#474f57] bg-[#ffffff54] dark:bg-[#111827d8] h-16 items-center px-5'>
+        <nav className='sticky top-0 left-0 z-50 flex justify-between backdrop-filter backdrop-blur-lg border-b-[.5px] border-b-blue-100 dark:border-b-[#474f57] bg-[#ffffff54] dark:bg-[#111827d8] h-16 items-center px-5 motion-scale-in-[1] motion-translate-y-in-[-73%] motion-duration-700'>
             <div className="left_side flex items-center">
                 <div className="logo text-2xl font-bold">
                     <Link href={'/'}><h1>Kavin<span className='text-blue-500'>AI</span></h1></Link>

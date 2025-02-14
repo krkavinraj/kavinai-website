@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { motion } from "framer-motion";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -16,12 +17,22 @@ export const Hero = () => {
   return (
     <main className='w-full h-screen bg-[#ffffff] dark:bg-[#111827]'>
       <section className="tag_line text-center md:mx-0 mx-5">
-        <h1 className='md:text-6xl text-4xl font-bold md:pt-16 pt-10 lg:w-[40%] md:w-[60%] w-[100%] mx-auto md:leading-[4rem] leading-[3rem]'><span className='text-purple-500'>Kavi</span> Made To Understand You</h1>
-        <p className='mt-2 mx-auto lg:w-[40%] md:w-[60%] w-[100%] dark:text-gray-400 text-gray-800'>An AI agent designed to control your entire PC through simple prompts, handling tasks just like a human—seamlessly, efficiently, and intuitively.</p>
-        <Link href={'/waitlist'}><Button className='mt-5 md:text-xl text-lg px-7 py-7'>Join the waitlist</Button></Link>
+        <motion.h1
+          className='md:text-6xl text-4xl font-bold md:pt-16 pt-10 lg:w-[40%] md:w-[60%] w-[100%] mx-auto md:leading-[4rem] leading-[3rem] overflow-hidden whitespace-nowrap'
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+        ><span className='text-purple-500'>Kavi</span> Made To Understand You</motion.h1>
+        <motion.p
+          className='mt-2 mx-auto lg:w-[40%] md:w-[60%] w-[100%] dark:text-gray-400 text-gray-800'
+          // initial={{ lineHeight: 0 }}
+          // animate={{ lineHeight: "100%" }}
+          // transition={{ duration: 0.5, ease: "easeInOut" }}
+        >An AI agent designed to control your entire PC through simple prompts, handling tasks just like a human—seamlessly, efficiently, and intuitively.</motion.p>
+        <Link href={'/waitlist'}><Button className='mt-5 md:text-xl text-lg px-7 py-7 motion-preset-focus'>Join the waitlist</Button></Link>
       </section>
 
-      <section className="video-slider md:mx-auto md:px-0 px-5 md:w-1/2 w-full mt-10">
+      <section className="video-slider md:mx-auto md:px-0 px-5 md:w-1/2 w-full mt-10 motion-preset-expand">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -34,9 +45,9 @@ export const Hero = () => {
         >
           {videos.map((video, index) => (
             <SwiperSlide key={index}>
-              <video 
-                controls 
-                muted 
+              <video
+                controls
+                muted
                 className="w-full h-full object-cover rounded-lg"
               >
                 <source src={video} type="video/mp4" />

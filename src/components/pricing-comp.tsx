@@ -1,16 +1,39 @@
+"use client";
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export const PricingComp = () => {
+    const ref = useRef<HTMLDivElement | null>(null); // Explicitly define type
+    const [hasLogged, setHasLogged] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        if (!ref.current || hasLogged) return; // Prevent unnecessary execution
+
+        const observer = new IntersectionObserver(
+            ([entry], observerInstance) => {
+                if (entry.isIntersecting) {
+                    setHasLogged(true);
+                    setIsVisible(true);
+                    observerInstance.unobserve(entry.target); // Stop observing
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        observer.observe(ref.current);
+
+        return () => observer.disconnect(); // Cleanup
+    }, [hasLogged]);
     return (
-        <section className="bg-white dark:bg-gray-900">
+        <section ref={ref} className="bg-white dark:bg-gray-900">
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
                     <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Pricing</h2>
                     <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Best for everyone</p>
                 </div>
                 <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-                    <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                    <div className={`flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block': 'hidden'} motion-duration-1000`}>
                         <h3 className="mb-4 text-2xl font-semibold">Base Subscription</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Best option for personal use with premium features.</p>
                         <div className="flex justify-center items-baseline my-8">
@@ -44,11 +67,11 @@ export const PricingComp = () => {
                         <Link href="/" className="text-white bg-purple-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900">Get started</Link>
                     </div>
 
-                    <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                    <div className={`flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block': 'hidden'} motion-duration-1000`}>
                         <h3 className="mb-4 text-2xl font-semibold">Plus Subscription</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Unlocks advanced features that is not available in base subscription</p>
                         <div className="flex justify-center items-baseline my-8">
-                        <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
+                            <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
                             <span className="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
 
@@ -72,11 +95,11 @@ export const PricingComp = () => {
                         </ul>
                         <Link href="/" className="text-white bg-purple-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-purple-900">Go Plus</Link>
                     </div>
-                    <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                    <div className={`flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block': 'hidden'} motion-duration-1000`}>
                         <h3 className="mb-4 text-2xl font-semibold">Enhance Your Experience</h3>
                         <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">Enhance your experience with optional features.</p>
                         <div className="flex justify-center items-baseline my-8">
-                        <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
+                            <span className="mr-2 text-2xl font-semibold">Coming Soon</span>
                             <span className="text-gray-500 dark:text-gray-400">/month</span>
                         </div>
 

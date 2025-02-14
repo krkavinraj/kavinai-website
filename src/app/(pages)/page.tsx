@@ -1,4 +1,5 @@
 import FAQ from "@/components/faq";
+import { FeaturesSection } from "@/components/feature-section";
 import { Hero } from "@/components/hero";
 import { PainPoints } from "@/components/pain-points";
 import { PricingComp } from "@/components/pricing-comp";
@@ -20,6 +21,7 @@ export default function Home() {
       </div>
       <WhyUs />
       <Waitlist />
+      <FeaturesSection />
       <FAQ />
       <PricingComp />
       {/* <Testimonial /> */}
