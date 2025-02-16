@@ -17,7 +17,7 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
        return null;
     };
     return (
-        <main className="dark:bg-gray-900">
+        <main className="dark:bg-gray-900 scroll-smooth">
             <Provider>
                 <NextTopLoader
                     color="#2299DD"

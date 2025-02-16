@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const features = [
     "Writes code that turns your ideas into reality",
@@ -15,8 +15,11 @@ const features = [
 ]
 
 export const FeaturesSection = () => {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]); 
+
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 transition-colors duration-500 py-20 px-4 sm:px-6 lg:px-8">
+    <motion.section style={{ opacity }} className="bg-white transition-colors duration-500 py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center mb-14">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-6">
@@ -28,7 +31,7 @@ export const FeaturesSection = () => {
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              className="group p-6 rounded-2xl transition-all bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-lg dark:shadow-gray-800/50"
+              className="group p-6 rounded-2xl transition-all bg-white hover:bg-gray-50 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
@@ -52,7 +55,7 @@ export const FeaturesSection = () => {
                     </svg>
                   </div>
                 </div>
-                <p className="text-lg text-gray-700 dark:text-gray-200">
+                <p className="text-lg text-gray-700">
                   {feature}
                 </p>
               </div>
@@ -60,6 +63,6 @@ export const FeaturesSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };

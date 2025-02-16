@@ -1,6 +1,7 @@
+import { DemoVideo } from "@/components/demo-video";
 import FAQ from "@/components/faq";
 import { FeaturesSection } from "@/components/feature-section";
-import { Hero } from "@/components/hero";
+import { Introduce } from "@/components/introduce";
 import { PainPoints } from "@/components/pain-points";
 import { PricingComp } from "@/components/pricing-comp";
 import { UseCases } from "@/components/use-cases";
@@ -11,17 +12,20 @@ import { WhyUs } from "@/components/why-us";
 export default function Home() {
   return (
     <main className="dark:bg-gray-900">
-      <Hero />
+      <Introduce />
+      <FeaturesSection />
       {/* <SocialProof/> */}
-      <div className="use_cases lg:mt-24">
+      <div className="use_cases lg:mt-24 bg-gray-900">
         <UseCases />
       </div>
-      <div className="pain_points lg:mx-20">
+      <div className="bg-gray-900">
+        <DemoVideo />
+      </div>
+      <div className="pain_points pt-20 md:mx-10 mx-5">
         <PainPoints />
       </div>
       <WhyUs />
       <Waitlist />
-      <FeaturesSection />
       <FAQ />
       <PricingComp />
       {/* <Testimonial /> */}

@@ -1,81 +1,99 @@
 "use client";
-import { ClockIcon, ComputerIcon, PersonStandingIcon, PuzzleIcon } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ClockIcon, ComputerIcon, PersonStandingIcon, PuzzleIcon } from "lucide-react";
+import Image from "next/image";
 
 export const PainPoints = () => {
-  const ref = useRef<HTMLDivElement | null>(null); // Explicitly define type
-  const [hasLogged, setHasLogged] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  // Ref for the pain points section
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!ref.current || hasLogged) return; // Prevent unnecessary execution
+  /* 
+    useScroll with a target ref gives us a scrollYProgress value (0 to 1) for the container.
+    We set the offset so that progress is 0 when the section is just off‑screen at the bottom,
+    and 1 when it’s fully scrolled past (i.e. at the top of the viewport).
+  */
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
 
-    const observer = new IntersectionObserver(
-      ([entry], observerInstance) => {
-        if (entry.isIntersecting) {
-          setHasLogged(true);
-          setIsVisible(true);
-          observerInstance.unobserve(entry.target); // Stop observing
-        }
-      },
-      { threshold: 0.5 }
-    );
+  /* 
+    Map scroll progress to plane’s x-position:
+      - When progress is 0 (no pain points seen) → x = 900 (right corner)
+      - When progress is 1 (all pain points visible) → x = -900 (left corner)
+    This means the plane continuously moves from right to left as the user scrolls.
+  */
+  const planeX = useTransform(scrollYProgress, [0, 1], ["100%", "-100%"]);
 
-    observer.observe(ref.current);
+  // Data for pain points
+  const painPoints = [
+    {
+      title: "Complicated Interfaces",
+      description:
+        "Using computers can feel overwhelming, especially for non-technical users. Managing files, apps, and online services is often confusing and time-consuming.",
+      icon: <ComputerIcon className="text-blue-600" />,
+    },
+    {
+      title: "Lack of Personalization",
+      description:
+        "Most personal assistants don't really get you. They're generic and don't adapt to your unique needs, preferences, or daily workflows, making them less helpful.",
+      icon: <PersonStandingIcon className="text-blue-600" />,
+    },
+    {
+      title: "Wasted Time",
+      description:
+        "Switching between multiple apps and doing the same repetitive tasks over and over wastes a lot of your valuable time. It's frustrating and inefficient.",
+      icon: <ClockIcon className="text-blue-600" />,
+    },
+    {
+      title: "Inconsistent Experiences",
+      description:
+        "Apps and systems often don't work well together. Each one has its own interface and way of doing things, leading to a clunky and disjointed experience.",
+      icon: <PuzzleIcon className="text-blue-600" />,
+    },
+  ];
 
-    return () => observer.disconnect(); // Cleanup
-  }, [hasLogged]);
+  // Animation variants for each pain point card
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <section ref={ref} className='bg-white dark:bg-gray-900 flex justify-center w-full pt-5'>
-      <div>
-        <h1 className='text-4xl text-center font-bold'>Pain Points</h1>
-        <div className="use_cases_cards flex flex-wrap justify-center mx-auto">
-          <div className={`use_cases md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300 ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block' : 'hidden'} motion-duration-500`}>
-            <div className="bg-blue-100 dark:bg-gray-800 h-full p-6 rounded-md hover:shadow-lg">
-              <div className="title flex items-center">
-                <div className="icon bg-blue-200 dark:bg-gray-700 rounded-full p-2 hover:bg-blue-300 dark:hover:bg-gray-600 transition-colors">
-                  <ComputerIcon className='hover:text-blue-600 transition-colors' />
-                </div>
-                <h2 className='ml-2 text-xl font-bold'>Complicated Interfaces</h2>
-              </div>
-              <p className='mt-2 dark:text-gray-300 text-gray-700'>Using computers can feel overwhelming, especially for non-technical users. Managing files, apps, and online services is often confusing and time-consuming.</p>
+    <section
+      ref={containerRef}
+      className="bg-white flex flex-col items-center w-full pt-5 rounded-lg lg:px-20 overflow-hidden text-black pb-20 px-10"
+    >
+      {/* The plane's horizontal position is bound to "planeX" (from scroll progress).
+          When scrolling stops, the scrollYProgress stops changing, so the plane “freezes” at that position. */}
+      <motion.div style={{ x: planeX }} className="w-full flex justify-center mb-5">
+        <Image src="/plane.png" alt="plane" width={100} height={100} />
+      </motion.div>
+
+      <h1 className="text-4xl text-center font-bold mb-8">Pain Points</h1>
+
+      {/* Pain points are laid out vertically. Each card animates in (and reverses when scrolling out)
+          so that one card is revealed at a time. */}
+      <div className="flex flex-col gap-8 w-full max-w-4xl">
+        {painPoints.map((point, index) => (
+          <motion.div
+            key={index}
+            className="p-6 bg-blue-100 rounded-md shadow"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.5, once: false }}
+            variants={cardVariants}
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="flex items-center">
+              <div className="bg-blue-200 rounded-full p-2">{point.icon}</div>
+              <h2 className="ml-2 text-xl font-bold">{point.title}</h2>
             </div>
-          </div>
-          <div className={`use_cases md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300 ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block' : 'hidden'} motion-duration-500`}>
-            <div className="bg-blue-100 dark:bg-gray-800 h-full p-6 rounded-md hover:shadow-lg">
-              <div className="title flex items-center">
-                <div className="icon bg-blue-200 dark:bg-gray-700 rounded-full p-2 hover:bg-blue-300 dark:hover:bg-gray-600 transition-colors">
-                  <PersonStandingIcon className='hover:text-blue-600 transition-colors' />
-                </div>
-                <h2 className='ml-2 text-xl font-bold'>Lack of Personalization</h2>
-              </div>
-              <p className='mt-2 dark:text-gray-300 text-gray-700'>Most personal assistants don&apos;t really get you. They&apos;re generic and don&apos;t adapt to your unique needs, preferences, or daily workflows, making them less helpful.</p>
-            </div>
-          </div>
-          <div className={`use_cases md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300 ${isVisible ? 'motion-scale-in-[0.5] motion-blur-in-[10px] motion motion-delay-[0.75s]/blur block' : 'hidden'} motion-duration-500`}>
-            <div className="bg-blue-100 dark:bg-gray-800 h-full p-6 rounded-md hover:shadow-lg">
-              <div className="title flex items-center">
-                <div className="icon bg-blue-200 dark:bg-gray-700 rounded-full p-2 hover:bg-blue-300 dark:hover:bg-gray-600 transition-colors">
-                  <ClockIcon className='hover:text-blue-600 transition-colors' />
-                </div>
-                <h2 className='ml-2 text-xl font-bold'>Wasted Time</h2>
-              </div>
-              <p className='mt-2 dark:text-gray-300 text-gray-700'>Switching between multiple apps and doing the same repetitive tasks over and over wastes a lot of your valuable time. It&apos;s frustrating and inefficient.</p>
-            </div>
-          </div>
-          <div className={`use_cases md:w-1/3 w-full p-4 transform hover:scale-105 transition-all duration-300 ${isVisible ? 'motion-scale-in-[1] motion-translate-y-in-[-50%] block' : 'hidden'} motion-duration-500`}>
-            <div className="bg-blue-100 dark:bg-gray-800 h-full p-6 rounded-md hover:shadow-lg">
-              <div className="title flex items-center">
-                <div className="icon bg-blue-200 dark:bg-gray-700 rounded-full p-2 hover:bg-blue-300 dark:hover:bg-gray-600 transition-colors">
-                  <PuzzleIcon className='hover:text-blue-600 transition-colors' />
-                </div>
-                <h2 className='ml-2 text-xl font-bold'>Inconsistent Experiences</h2>
-              </div>
-              <p className='mt-2 dark:text-gray-300 text-gray-700'>Apps and systems often don&apos;t work well together. Each one has its own interface and way of doing things, leading to a clunky and disjointed experience.</p>
-            </div>
-          </div>
-        </div>
+            <p className="mt-2 text-gray-700">{point.description}</p>
+          </motion.div>
+        ))}
       </div>
     </section>
-  )
-}
+  );
+};
