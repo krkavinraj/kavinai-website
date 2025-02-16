@@ -15,11 +15,11 @@ export default function Home() {
       <Introduce />
       <FeaturesSection />
       {/* <SocialProof/> */}
-      <div className="use_cases lg:mt-24 bg-gray-900">
-        <UseCases />
-      </div>
-      <div className="bg-gray-900">
+      <div className="bg-gray-900 mt-5">
         <DemoVideo />
+      </div>
+      <div className="use_cases lg:mt-0 bg-gray-900">
+        <UseCases />
       </div>
       <div className="pain_points pt-20 md:mx-10 mx-5">
         <PainPoints />
