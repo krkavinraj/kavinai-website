@@ -2,6 +2,7 @@
 import React from 'react';
 import { Hero } from './hero';
 import { motion, useScroll, useTransform } from "framer-motion";
+import { HeroMobile } from './hero-mobile';
 
 export const Introduce = () => {
   const { scrollYProgress } = useScroll();
@@ -11,8 +12,11 @@ export const Introduce = () => {
   return (
     <div className='bg-[url(/hero.png)] bg-cover bg-center bg-fixed min-h-screen relative'>
       {/* Hero Section - Ensure it stays on top */}
-      <div className="relative z-30">
+      <div className="relative z-30 md:block hidden">
         <Hero />
+      </div>
+      <div className="relative z-30 md:hidden block">
+        <HeroMobile />
       </div>
 
       {/* Centered expanding white background */}
