@@ -1,9 +1,31 @@
 "use client";
 import { ChevronDownIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null); // Explicitly define type
+      const [hasLogged, setHasLogged] = useState(false);
+      const [isVisible, setIsVisible] = useState(false);
+  
+      useEffect(() => {
+          if (!ref.current || hasLogged) return; // Prevent unnecessary execution
+  
+          const observer = new IntersectionObserver(
+              ([entry], observerInstance) => {
+                  if (entry.isIntersecting) {
+                      setHasLogged(true);
+                      setIsVisible(true);
+                      observerInstance.unobserve(entry.target); // Stop observing
+                  }
+              },
+              { threshold: 0.5 }
+          );
+  
+          observer.observe(ref.current);
+  
+          return () => observer.disconnect(); // Cleanup
+      }, [hasLogged]);
 
   const faqs = [
     {
@@ -33,7 +55,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto px-4 py-16 sm:py-24">
+    <section ref={ref} className="max-w-4xl mx-auto px-4 py-16 sm:py-24">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-600 to-pink-600 dark:from-indigo-400 dark:to-pink-400 bg-clip-text text-transparent">
           Frequently Asked Questions
@@ -47,7 +69,7 @@ const FAQ = () => {
         {faqs.map((faq, index) => (
           <div 
             key={index}
-            className="group bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+            className={`group bg-white dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 ${isVisible ? 'motion-preset-focus motion-duration-1000 block' : 'hidden'}`}
           >
             <button
               onClick={() => handleToggle(index)}
