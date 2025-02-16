@@ -19,7 +19,7 @@ export const FeaturesSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]); 
 
   return (
-    <motion.section style={{ opacity }} className="bg-white transition-colors duration-500 py-20 px-4 sm:px-6 lg:px-8">
+    <motion.section style={{ opacity }} className="bg-white transition-colors duration-500 py-20 px-4 sm:px-6 lg:px-8 z-50">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center mb-14">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent mb-6">
