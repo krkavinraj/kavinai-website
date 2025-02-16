@@ -7,6 +7,7 @@ import { PricingComp } from "@/components/pricing-comp";
 import { UseCases } from "@/components/use-cases";
 import { Waitlist } from "@/components/waitlist";
 import { WhyUs } from "@/components/why-us";
+import { WhyUsMobile } from "@/components/why-us-mobile";
 
 // code
 export default function Home() {
@@ -24,7 +25,12 @@ export default function Home() {
       <div className="pain_points pt-20 md:mx-10 mx-5">
         <PainPoints />
       </div>
+      <div className="why_us md:block hidden">
       <WhyUs />
+      </div>
+      <div className="why_us_main md:hidden block">
+        <WhyUsMobile />
+      </div>
       <Waitlist />
       <FAQ />
       <PricingComp />

@@ -6,11 +6,11 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 
 export const Hero = () => {
   const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]); // Fade out on scroll
+  const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]); // Fade out as user scrolls
   const [isHidden, setIsHidden] = useState(false);
 
   useMotionValueEvent(opacity, "change", (latest) => {
-    setIsHidden(latest === 0);
+    setIsHidden(latest === 0); // Hide when opacity is 0
   });
 
   return (
@@ -21,42 +21,23 @@ export const Hero = () => {
           style={{ opacity, pointerEvents: isHidden ? "none" : "auto" }}
         >
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] mx-auto leading-tight text-white"
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.2 }}
+            className="md:text-6xl text-4xl font-bold lg:w-[40%] md:w-[60%] w-[90%] mx-auto md:leading-[4rem] leading-[3rem] overflow-hidden whitespace-nowrap text-white"
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
           >
             <span className="text-purple-500">Kavi</span> Made To Understand You
           </motion.h1>
-
-          <motion.p
-            className="my-4 mx-auto w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] text-gray-200 text-base sm:text-lg md:text-xl"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
-          >
+          <motion.p className="my-4 mx-auto lg:w-[40%] md:w-[60%] w-[90%] text-gray-200 text-xl">
             Turn your ideas into reality with a smart assistant that writes code, sends perfectly timed emails, and
             commands your PC—all while navigating the web, managing chats, organizing files, and automating daily
             tasks. Experience a seamless, secure digital life where precision meets privacy.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut", delay: 0.8 }}
-          >
-            <Link href={"/waitlist"}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 200 }}
-              >
-                <Button className="mt-4 text-lg sm:text-xl px-6 py-6 sm:px-7 sm:py-7 bg-white text-black">
-                  Join the waitlist
-                </Button>
-              </motion.div>
-            </Link>
-          </motion.div>
+          <Link href={"/waitlist"}>
+            <Button className="mt-1 md:text-xl text-lg px-7 py-7 motion-preset-focus bg-white text-black">
+              Join the waitlist
+            </Button>
+          </Link>
         </motion.section>
       )}
     </main>
