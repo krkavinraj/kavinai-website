@@ -80,7 +80,7 @@ export const Hero = () => {
           >
             <span className="text-purple-500">Kavi</span> Made To Understand You
           </motion.h1>
-          <motion.p className="my-4 mx-auto lg:w-[40%] md:w-[60%] w-[90%] text-gray-200 text-xl">
+          <motion.p className="my-4 mx-auto lg:w-[40%] md:w-[60%] w-[90%] text-gray-200 text-2xl">
             Turn your ideas into reality with a smart assistant that writes code, sends perfectly timed emails, and
             commands your PC—all while navigating the web, managing chats, organizing files, and automating daily
             tasks. Experience a seamless, secure digital life where precision meets privacy.
